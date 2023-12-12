@@ -1,0 +1,23 @@
+<!-- <h2>{{ showActive ? 'Active Drivers' : 'Inactive Drivers' }}</h2> -->
+<h2>Drivers</h2>
+<ng-container *ngIf="!drivers">
+    <h3>Loading drivers...</h3>
+</ng-container>
+<ng-container *ngIf="drivers">
+    <!-- <div class="driver-button-container">
+        <div class="driver-nav">
+            <button class="btn btn-sm btn-primary btn-lg" (click)="onClick_showActiveDrivers(true)"
+                [disabled]="showActive">Active</button>
+            <button class="btn btn-sm btn-secondary btn-lg" (click)="onClick_showActiveDrivers(false)"
+                [disabled]="!showActive">Inactive</button>
+        </div>
+    </div> -->
+
+    <div class="overview-container">
+        <app-driver-overview [driversList]="drivers"
+            (changeDriverActiveEvent)="setDriverActive($event)"></app-driver-overview>
+        <button class="btn btn-sm btn-success add-button" (click)="onClick_gotoAddDriver()" [hidden]="!showActive">Add</button>
+    </div>
+
+    <app-paginator [pagination]="pagination"></app-paginator>
+</ng-container>

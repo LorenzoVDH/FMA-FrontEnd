@@ -1,0 +1,20 @@
+<div class="general-table-container">
+    <table class="general-table">
+        <thead>
+            <tr>
+                <th *ngFor="let name of columnNames">{{ name }}</th>
+                <ng-container *ngTemplateOutlet="tableHeadExtensionHtml"></ng-container>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of items">
+                <tr>
+                    <td *ngFor="let key of columnKeys">
+                        {{ formatValue(item[key]) || '-' }}
+                    </td>
+                    <ng-container *ngTemplateOutlet="tableBodyExtensionHtml; context: { $implicit: item }"></ng-container>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

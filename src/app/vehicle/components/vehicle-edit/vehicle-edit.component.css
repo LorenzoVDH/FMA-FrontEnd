@@ -1,0 +1,82 @@
+.driver-form {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto auto 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.vehicle-grid-container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.label {
+    text-align: left;
+}
+
+.value {
+    text-align: left;
+}
+
+.label, .value {
+    width: 200px;
+    height: 30px;
+}
+.validation {
+    width: 250px;
+    height: 40px; 
+}
+    
+.validation {
+    color: red;
+}
+
+.button-container {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+input:read-only {
+    background-color: lightgrey;
+    color: grey;
+}
+
+.btn.notenabled {
+    opacity: 0.5;
+}
+
+.driver-vehicle-table {
+    margin: 20px; 
+    text-align: left;
+}
+
+.driver-vehicle-table td, th {
+    padding: 10px; 
+}
+
+.btn {
+    margin: 10px;
+}
+
+.driver-vehicle-container {
+    margin: 50px; 
+}
+
+.formButton {
+    margin-top:0; 
+    align-self: flex-start;
+}

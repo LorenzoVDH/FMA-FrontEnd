@@ -1,0 +1,9 @@
+<div class="popup-container">
+    <button mat-button (click)="closeDialog()" class="close-button">X</button>
+    <h2>{{ data.message }}</h2>
+    <h3 *ngFor="let subMsg of data.submessage">{{ subMsg }}</h3>
+    <div *ngIf="isQuestion">
+      <button class="btn btn-primary" (click)="closeDialog(true)">Yes</button>
+      <button class="btn btn-secondary" (click)="closeDialog(false)">No</button>
+    </div>
+  </div>

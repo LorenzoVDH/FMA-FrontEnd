@@ -1,0 +1,10 @@
+<h2>Inquiries</h2>
+<ng-container *ngIf="!inquiries">
+    <h3>Loading inquiries...</h3>
+</ng-container>
+<ng-container *ngIf="inquiries">
+    <div class="overview-container">
+        <app-inquiry-overview [inquiryList]="inquiries"></app-inquiry-overview>
+    </div>
+    <app-paginator [pagination]="pagination"></app-paginator>
+</ng-container>

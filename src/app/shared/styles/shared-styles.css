@@ -1,0 +1,61 @@
+.general-table-container {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.general-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.general-table th,
+.general-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.general-table th {
+    background-color: #f2f2f2;
+}
+
+.general-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.general-activate-buttons button {
+    margin: 3px;
+}
+
+.pagination-container {
+    margin: 10px;
+}
+
+.pagination-container div {
+    margin: 5px;
+}
+
+.pagination-button {
+    width: 30px;
+    height: 30px;
+}
+
+.pagination-next-prev button {
+    margin: 3px; 
+}
+
+.overview-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-button {
+    align-self: center;
+    width: 120px;
+    margin: 7px 0px; 
+} 
+
+a {
+    text-decoration: none;
+}

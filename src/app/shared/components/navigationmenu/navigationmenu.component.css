@@ -1,0 +1,29 @@
+.mat-toolbar-row {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-menu {
+    margin-left: 16px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    padding: 5px;
+    color: white;
+    font-weight: 300;
+}
+
+.nav-menu a:hover {
+    opacity: 0.8;
+}
+
+.separator {
+    margin: 0 5px;
+    color: white;
+}

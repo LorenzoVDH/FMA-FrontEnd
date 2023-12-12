@@ -1,0 +1,37 @@
+<app-overview [columns]="columns" [items]="vehiclesList" [tableHeadExtensionHtml]="vehiclesOverviewHeadTemplate" [tableBodyExtensionHtml]="vehiclesOverviewBodyTemplate"></app-overview>
+
+<!-- This template fills in 'tableHeadExtensionHtml' in the general overview html-->
+<ng-template #vehiclesOverviewHeadTemplate let-vehicle>
+    <th>License Plate</th>
+    <th>Mileage</th> 
+    <th></th>
+    <th></th>
+    <th></th>
+</ng-template>
+
+<!-- This template fills in 'tableBodyExtensionHtml' in the general overview html-->
+<ng-template #vehiclesOverviewBodyTemplate let-vehicle>
+    <td class="td-licenseplate">
+        <ng-container *ngIf="vehicle.currentLicensePlate">
+            <b>{{formatValue(vehicle.currentLicensePlate)}}</b>
+        </ng-container>
+        <ng-container *ngIf="!vehicle.currentLicensePlate && !vehicle.currentLicensePlateNumber">
+            -
+        </ng-container>
+        <ng-container *ngIf="vehicle.pendingLicensePlateNumber">
+            <br/><br/>  {{formatValue(vehicle.pendingLicensePlateStartDate)}}: <i> {{formatValue(vehicle.pendingLicensePlateNumber)}} </i>
+        </ng-container>
+    </td>
+    <td>
+        {{formatValue(vehicle.currentMileageInKilometers)}} km 
+    </td>
+    <td>
+        <button class="btn btn-primary btn-sm" [routerLink]="'edit/' + vehicle.id">Edit</button>
+    </td>
+    <td>
+        <button class="btn btn-secondary btn-sm" [routerLink]="'reports/' + vehicle.id">Reports</button> 
+    </td>
+    <td>
+        <button class="btn btn-secondary btn-sm" [routerLink]="vehicle.id + '/maintenances'">Maintenances</button>
+    </td>
+</ng-template>

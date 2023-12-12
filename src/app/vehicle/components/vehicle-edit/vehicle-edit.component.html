@@ -1,0 +1,205 @@
+<h1>Edit Vehicle</h1>
+<ng-container *ngIf="vehicleForm">
+    <form class="vehicle-form" [formGroup]="vehicleForm" (ngSubmit)="saveVehicle()">
+        <div class="grid-container">
+            <!--ID-->
+            <div class="label">
+                <label for="id">ID:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="id" formControlName="id" readonly>
+            </div>
+            <div class="validation"></div>
+
+            <!-- NAME-->
+            <div class="label">
+                <label for="name">Vehicle Name:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="name" formControlName="name" >
+            </div>
+            <div class="validation">
+                <!-- <div *ngIf="vehicleForm.controls['name'].errors && ( vehicleForm.controls['name'].touched || saveButtonClicked )">
+                    <div>{{ errorTranslator(vehicleForm.controls['name'].errors, getErrorMessagesArrayForField('name')) }}</div>
+                </div> -->
+            </div>
+
+            <!--CHASSIS NUMBER-->
+            <div class="label">
+                <label for="chassisNumber">Chassis Number:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="chassisNumber" formControlName="chassisNumber" >
+            </div>
+            <div class="validation">
+            </div>
+
+            <!--FUEL TYPE-->
+            <div class="label">
+                <label for="fuelType">Fuel Type:</label>
+            </div>
+            <div class="value">
+                <!-- Is it possible to get this data from the enum inside of the backend? -->
+                <select id="fuelType" formControlName="fuelType">
+                    <option value="PetrolE5">PetrolE5</option>
+                    <option value="PetrolE10">PetrolE10</option>
+                    <option value="Super98">Super98</option>
+                    <option value="Diesel">Diesel</option>
+                </select>
+            </div>
+            <div class="validation"></div>
+
+            <!--VEHICLE TYPE ID-->
+            <div class="label">
+                <label for="vehicleTypeID">Type:</label>
+            </div>
+            <div class="value">
+                <select id="vehicleTypeID" formControlName="vehicleTypeID" name="vehicleTypeID" required>
+                    <option *ngFor="let vehicleType of vehicleTypesList" value="{{vehicleType.id}}">{{vehicleType.name}}</option>
+                </select>
+            </div>
+            <div class="validation"></div>
+
+            <!--REGISTRATION DATE-->
+            <div class="label">
+                <label for="registrationDate">Registration Date:</label>
+            </div>
+            <div class="value">
+                <input type="date" id="registrationDate" formControlName="registrationDate">
+            </div>
+            <div class="validation">
+            </div>
+
+            <!--LEASING START DATE-->
+            <div class="label">
+                <label for="leasingStartDate">Leasing Start Date:</label>
+            </div>
+            <div class="value">
+                <input type="date" id="leasingStartDate" formControlName="leasingStartDate">
+            </div>
+            <div class="validation"></div>
+
+            <!--LEASING END DATE-->
+            <div class="label">
+                <label for="leasingEndDate">Leasing End Date:</label>
+            </div>
+            <div class="value">
+                <input type="date" id="leasingEndDate" formControlName="leasingEndDate">
+            </div>
+            <div class="validation"></div>
+
+            <!--CURRENT LICENSE PLATE NUMBER-->
+            <div class="label">
+                <label for="currentLicensePlateNumber">Licenseplate Number:</label>
+            </div>
+            <div class="value">
+                <input  type="text" id="currentLicensePlateNumber" formControlName="currentLicensePlateNumber">
+            </div>
+            <div class="validation">
+                <button type="button" class="btn btn-sm btn-primary formButton" [routerLink]="'licenseplates'">History</button>
+            </div>
+            
+            <!--NEW LICENSE PLATE STARTDATE-->
+            <ng-container *ngIf="vehicleForm.controls['currentLicensePlateNumber'].value !== unchangedVehicle.currentLicensePlateNumber">
+                <div class="label">
+                    <label for="licensePlateStartDate">Startdate New Licenseplate Number:</label>
+                </div>
+                <div class="value">
+                    <input type="date" id="licensePlateStartDate" formControlName="licensePlateStartDate">
+                </div>
+                <div class="validation">
+                </div>
+            </ng-container>
+            
+            
+            <!--PENDING LICENSE PLATE NUMBER-->
+            <ng-container *ngIf="vehicleForm.controls['pendingLicensePlateNumber'].value">
+                <div class="label">
+                    <label for="pendingLicensePlateNumber">Pending ({{formatValue(pendingLicensePlateStartDate)}}): </label>
+                </div>
+                <div class="value">
+                    <input type="text" id="pendingLicensePlateNumber" formControlName="pendingLicensePlateNumber" readonly>
+                </div>
+                <div class="validation">
+                    <button type="button" class="btn btn-sm btn-danger formButton" (click)="onClick_removePendingLicensePlate()">Remove</button>
+                </div>
+            </ng-container>
+             
+            <!--MILEAGE-->
+            <div class="label">
+                <label for="mileage">Mileage In Kilometers:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="mileage" formControlName="mileage">
+            </div>
+            <div class="validation"></div>
+        </div>
+        
+        
+        <!--SAVE AND RETURN-->
+        <div class="button-container" colspan="2">
+            <button class="btn btn-success" type="submit" [class.notenabled]="vehicleForm.invalid" (mouseenter)="mouseOver_save()">Save</button>
+            <button type="button" class="btn btn-danger" (click)="onClick_deactivateVehicle()">Deactivate</button>
+            <button class="btn btn-primary" routerLink="/vehicles">Vehicle Overview</button>
+        </div>
+    </form>
+    <form class="driver-to-vehicle-form" [formGroup]="driverVehicleForm" (ngSubmit)="onClick_addVehicleToDriver()">
+        <div class="driver-vehicle-container"> 
+            <h2>This Vehicle is shared amongst Drivers:</h2> 
+            
+            <!-- <ul class="list-of-drivers" *ngFor="let driver of drivers">
+                <li><a [routerLink]="'/drivers/edit/'+driver.id"><b>{{driver.nationalRegistrationNumber}}</b>: {{driver.firstName}} {{driver.lastName}}</a></li>
+            </ul> -->   
+
+            </div>
+                <ng-container *ngIf="drivers && drivers.length > 0">
+                    <div class="vehicle-grid-container">
+                        <table class="driver-vehicle-table">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>National Registration Number</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let driver of drivers">
+                                    <tr>
+                                        <td><a [routerLink]="'/drivers/edit/'+driver.id">{{ driver.firstName }}</a></td>
+                                        <td><a [routerLink]="'/drivers/edit/'+driver.id">{{ driver.lastName }}</a></td>
+                                        <td><a [routerLink]="'/drivers/edit/'+driver.id">{{ driver.nationalRegistrationNumber }}</a></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm" (click)="onClick_removeDriver( driver.id )">Remove</button></td>
+                                    </tr>
+                                    
+                                </ng-container>
+                            </tbody>
+                        </table> 
+                    </div>
+                </ng-container>
+            <div>
+
+            <h3>Search for a driver to add as an owner: </h3>
+            <input type="text" #searchInput (input)="onChange_searchDriver(searchInput.value)" />
+        </div>
+
+        <div>
+            <select formControlName="driverId">
+                <ng-container *ngIf="!driverSearchResults || searchInput.value.length < 3">
+                    <option value="{{null}}">
+                        --No drivers found--
+                    </option>
+                </ng-container>
+                <ng-container *ngIf="driverSearchResults && searchInput.value.length >= 3">
+                    <option>
+                        --Drivers containing "{{searchInput.value}}"--
+                    </option>
+                    <option *ngFor="let driver of driverSearchResults" value="{{driver.id}}">
+                        {{driver.nationalRegistrationNumber}}: {{driver.firstName}} {{driver.lastName}}
+                    </option>
+                </ng-container>
+            </select>
+            <button type="submit" class="btn btn-sm btn-success" [class.notenabled]="driverVehicleForm.invalid">Add</button>
+        </div>
+    </form>
+</ng-container>

@@ -1,0 +1,24 @@
+<app-overview [columns]="columns" [items]="driversList" [tableHeadExtensionHtml]="driverOverviewHeadTemplate" [tableBodyExtensionHtml]="driverOverviewBodyTemplate"></app-overview>
+
+<!-- This template fills in 'tableHeadExtensionHtml' in the general overview html-->
+<ng-template #driverOverviewHeadTemplate let-driver>
+    <th>Vehicles</th>
+    <th></th>
+    <!-- <th></th> -->
+</ng-template>
+
+<!-- This template fills in 'tableBodyExtensionHtml' in the general overview html-->
+<ng-template #driverOverviewBodyTemplate let-driver>
+    <td>
+        <ng-container *ngIf="driver.vehicles">
+            <span *ngFor="let vehicle of driver.vehicles">
+                <a [routerLink]="'/vehicles/edit/'+vehicle.id">
+                    - {{ vehicle.name }}
+                </a><br>
+            </span>
+        </ng-container>
+    </td>
+    <td>
+        <button class="btn btn-primary btn-sm" [routerLink]="'edit/' + driver.id">Edit</button>
+    </td>
+</ng-template>

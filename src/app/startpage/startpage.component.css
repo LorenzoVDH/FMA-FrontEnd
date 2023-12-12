@@ -1,0 +1,22 @@
+.token-display {
+    text-align: center;
+    margin: 25px; 
+}
+
+.token-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.token-text {
+    word-wrap: break-word;
+    font-style: italic; 
+}
+
+.token-buttons {
+    margin: 25px; 
+}
+
+.token-warning {
+    font-weight: bold; 
+}

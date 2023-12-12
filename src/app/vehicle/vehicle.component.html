@@ -1,0 +1,11 @@
+<h2>Vehicles</h2>
+<ng-container *ngIf="!vehicles">
+    <h3>Loading vehicles...</h3>
+</ng-container>
+<ng-container *ngIf="vehicles">
+    <div class="overview-container">
+        <app-vehicle-overview [vehiclesList]="vehicles"></app-vehicle-overview>
+        <button class="btn btn-sm btn-success add-button" (click)="onClick_gotoAddVehicle()">Add</button>
+    </div>
+    <app-paginator [pagination]="pagination"></app-paginator>
+</ng-container>

@@ -1,0 +1,15 @@
+.popup-container {
+    margin: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.close-button {
+    position:absolute; 
+    top:20px; 
+    right:20px;
+}
+
+button {
+    margin: 5px;
+}

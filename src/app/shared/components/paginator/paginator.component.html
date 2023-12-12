@@ -1,0 +1,30 @@
+<nav class="pagination-container">
+    <div class="pagination-next-prev">
+        <button class="btn btn-lg btn-primary" [disabled]="pageIndex === 0"
+            (click)="gotoPage(pageIndex - 1)">&lt;</button>
+        <button class="btn btn-lg btn-primary" [disabled]="pageIndex === maxPages"
+            (click)="gotoPage(pageIndex + 1)">&gt;</button>
+    </div>
+
+    <div class="pagination-inbetween">
+        <ng-container *ngIf="maxPages > 1">
+            <button class="btn btn-sm btn-primary" (click)="gotoPage(0)" [disabled]="pageIndex === 0">First</button>
+            <ng-container *ngFor="let pageNumber of inBetweenPageNumbers">
+                <button class="btn btn-sm btn-lg pagination-button" (click)="gotoPage(pageNumber)"
+                    [disabled]="pageIndex === pageNumber">{{ pageNumber+1 }}</button>
+            </ng-container>
+            <button class="btn btn-sm btn-primary" (click)="gotoPage(maxPages)"
+                [disabled]="pageIndex >= maxPages">Last</button>
+        </ng-container>
+    </div>
+    
+    <div class="pagination-results-selector">
+        <select [(ngModel)]="pageLength">
+            <option>3</option>
+            <option>5</option>
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+        </select>
+    </div>
+</nav>

@@ -1,0 +1,21 @@
+.driver-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.driver-activate-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.driver-activate-buttons button {
+    margin-left: 10px;
+}
+
+.driver-nav {
+    flex-grow: 1;
+    text-align: center;
+}

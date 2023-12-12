@@ -1,0 +1,107 @@
+<h1>Add Vehicle</h1>
+<ng-container *ngIf="vehicleForm">
+    <form class="vehicle-form" [formGroup]="vehicleForm" (ngSubmit)="addVehicle()">
+        <div class="grid-container">
+            <!-- NAME-->
+            <div class="label">
+                <label for="name">Vehicle Name:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="name" formControlName="name" >
+            </div>
+            <div class="validation">
+                <!-- <div *ngIf="vehicleForm.controls['name'].errors && ( vehicleForm.controls['name'].touched || saveButtonClicked )">
+                    <div>{{ errorTranslator(vehicleForm.controls['name'].errors, getErrorMessagesArrayForField('name')) }}</div>
+                </div> -->
+            </div>
+
+            <!--CHASSIS NUMBER-->
+            <div class="label">
+                <label for="chassisNumber">Chassis Number:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="chassisNumber" formControlName="chassisNumber" >
+            </div>
+            <div class="validation">
+            </div>
+
+            <!--FUEL TYPE-->
+            <div class="label">
+                <label for="fuelType">Fuel Type:</label>
+            </div>
+            <div class="value">
+                <!-- Is it possible to get this data from the enum inside of the backend? -->
+                <select id="fuelType" formControlName="fuelType">
+                    <option value="PetrolE5">PetrolE5</option>
+                    <option value="PetrolE10">PetrolE10</option>
+                    <option value="Super98">Super98</option>
+                    <option value="Diesel">Diesel</option>
+                </select>
+            </div>
+            <div class="validation"></div>
+
+            <!--VEHICLE TYPE ID-->
+            <div class="label">
+                <label for="vehicleTypeID">Type:</label>
+            </div>
+            <div class="value">
+                <select id="vehicleTypeID" formControlName="vehicleTypeID" name="vehicleTypeID" required>
+                    <option *ngFor="let vehicleType of vehicleTypesList" value="{{vehicleType.id}}">{{vehicleType.name}}</option>
+                </select>
+            </div>
+            <div class="validation"></div>
+
+            <!--REGISTRATION DATE-->
+            <div class="label">
+                <label for="registrationDate">Registration Date:</label>
+            </div>
+            <div class="value">
+                <input type="date" id="registrationDate" formControlName="registrationDate">
+            </div>
+            <div class="validation">
+            </div>
+
+            <!--LEASING START DATE-->
+            <div class="label">
+                <label for="leasingStartDate">Leasing Start Date:</label>
+            </div>
+            <div class="value">
+                <input type="date" id="leasingStartDate" formControlName="leasingStartDate">
+            </div>
+            <div class="validation"></div>
+
+            <!--LEASING END DATE-->
+            <div class="label">
+                <label for="leasingEndDate">Leasing End Date:</label>
+            </div>
+            <div class="value">
+                <input type="date" id="leasingEndDate" formControlName="leasingEndDate">
+            </div>
+            <div class="validation"></div>
+
+            <!--CURRENT LICENSE PLATE NUMBER-->
+            <div class="label">
+                <label for="currentLicensePlateNumber">Licenseplate Number:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="currentLicensePlateNumber" formControlName="currentLicensePlateNumber">
+            </div>
+            <div class="validation"></div>
+
+            <!--MILEAGE-->
+            <div class="label">
+                <label for="mileage">Mileage In Kilometers:</label>
+            </div>
+            <div class="value">
+                <input type="text" id="mileage" formControlName="mileage">
+            </div>
+            <div class="validation"></div>
+        </div>
+        
+        <!--SAVE AND RETURN-->
+        <div class="button-container" colspan="2">
+            <button class="btn btn-success" type="submit" [class.notenabled]="vehicleForm.invalid">Save</button>
+            <button class="btn btn-primary" routerLink="/vehicles">Vehicle Overview</button>
+        </div>
+    </form>
+</ng-container>

@@ -1,0 +1,19 @@
+<h2>Maintenances for Vehicle {{vehicleId}}</h2>
+<app-overview [columns]="columns" [items]="maintenances" [tableHeadExtensionHtml]="maintenancesOverviewHeadTemplate" [tableBodyExtensionHtml]="maintenancesOverviewBodyTemplate"></app-overview> 
+<button [routerLink]="'/vehicles/'" class="btn btn-secondary">Back</button> 
+
+<ng-template #maintenancesOverviewHeadTemplate let-maintenance>
+    <th>Garage</th>
+    <th>Cost</th>
+    <th>Tasks</th>
+</ng-template>
+
+<ng-template #maintenancesOverviewBodyTemplate let-maintenance>
+    <td>{{maintenance.garageName}}</td>
+    <td>€{{maintenance.cost}}</td>
+    <table class="table-maintenancetasks" *ngFor="let task of maintenance.tasks">
+        <tr>
+            <td>{{task.description}}</td>
+        </tr>   
+    </table>
+</ng-template>

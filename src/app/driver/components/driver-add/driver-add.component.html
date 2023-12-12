@@ -1,0 +1,135 @@
+<h1>Add Driver</h1>
+<form class="driver-form" [formGroup]="driverForm" (ngSubmit)="addDriver()">
+  <div class="grid-container">
+    <!--LAST NAME-->
+    <div class="label">
+      <label for="lastName">Last Name:</label>
+    </div>
+    <div class="value">
+      <input type="text" id="lastName" formControlName="lastName">
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['lastName'].errors && driverForm.controls['lastName'].touched">
+        <div>{{ errorTranslator(driverForm.controls['lastName'].errors, getErrorMessagesArrayForField('lastName')) }}</div>
+      </div>
+    </div>
+
+    <!--FIRST NAME-->
+    <div class="label">
+      <label for="firstName">First Name:</label>
+    </div>
+    <div class="value">
+      <input type="text" id="firstName" formControlName="firstName">
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['firstName'].errors && driverForm.controls['firstName'].touched">
+        <div>{{ errorTranslator(driverForm.controls['firstName'].errors, getErrorMessagesArrayForField('firstName')) }}</div>
+      </div>
+    </div>
+
+    <!--DATE OF BIRTH-->
+    <div class="label">
+      <label for="dateOfBirth">Date of Birth:</label>
+    </div>
+    <div class="value">
+      <input type="date" id="dateOfBirth" formControlName="dateOfBirth" required>
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['dateOfBirth'].errors && driverForm.controls['dateOfBirth'].touched">
+        <div>{{ errorTranslator(driverForm.controls['dateOfBirth'].errors, getErrorMessagesArrayForField('dateOfBirth')) }}</div>
+      </div>
+    </div>
+
+    <!--NATIONAL REGISTRATION NUMBER-->
+    <div class="label">
+      <label for="nationalRegistrationNumber">National Registration Number:</label>
+    </div>
+    <div class="value">
+      <input type="text" id="nationalRegistrationNumber" formControlName="nationalRegistrationNumber">
+    </div>
+
+    <div class="validation">
+      <div *ngIf="driverForm.controls['nationalRegistrationNumber'].errors && driverForm.controls['nationalRegistrationNumber'].touched">
+        <div>{{ errorTranslator(driverForm.controls['nationalRegistrationNumber'].errors, getErrorMessagesArrayForField('nationalRegistrationNumber')) }}</div>
+      </div>
+    </div>
+    
+    <!--POSTAL CODE-->
+    <div class="label">
+      <label for="addressPostalCode">Postal Code:</label>
+    </div>
+    <div class="value">
+      <input type="text" id="addressPostalCode" formControlName="addressPostalCode">
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['addressPostalCode'].errors && driverForm.controls['addressPostalCode'].touched">
+        <div>{{ errorTranslator(driverForm.controls['addressPostalCode'].errors, getErrorMessagesArrayForField('addressPostalCode')) }}</div>
+      </div>
+    </div>
+
+    <!--HOUSENUMBER-->
+    <div class="label">
+      <label for="addressHouseNumber">House Number:</label>
+    </div>
+    <div class="value">
+      <input type="text" id="addressHouseNumber" formControlName="addressHouseNumber">
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['addressHouseNumber'].errors && driverForm.controls['addressHouseNumber'].touched">
+        <div>{{ errorTranslator(driverForm.controls['addressHouseNumber'].errors, getErrorMessagesArrayForField('addressHouseNumber')) }}</div>
+      </div>
+    </div>
+
+    <!--STREET-->
+    <div class="label">
+      <label for="addressStreet">Street:</label>
+    </div>
+    <div class="value">
+      <input type="text" id="addressStreet" formControlName="addressStreet">
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['addressStreet'].errors && driverForm.controls['addressStreet'].touched">
+        <div>{{ errorTranslator(driverForm.controls['addressStreet'].errors, getErrorMessagesArrayForField('addressStreet')) }}</div>
+      </div>
+    </div>
+
+    <!--CITY-->
+    <div class="label">
+      <label for="addressCity">City:</label>
+    </div>
+    <div class="value">
+      <input type="text" id="addressCity" formControlName="addressCity">
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['addressCity'].errors && driverForm.controls['addressCity'].touched">
+        <div>{{ errorTranslator(driverForm.controls['addressCity'].errors, getErrorMessagesArrayForField('addressCity')) }}</div>
+      </div>
+    </div>
+
+    <!--LICENSETYPE-->
+    <div class="label">
+      <label for="licenseType">License Type:</label>
+    </div>
+    <div class="value">
+      <select id="licenseType" formControlName="licenseType">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="G">G</option>
+        <option value="AM">AM</option>
+      </select>
+    </div>
+    <div class="validation">
+      <div *ngIf="driverForm.controls['licenseType'].errors && driverForm.controls['licenseType'].touched">
+        <div>{{ errorTranslator(driverForm.controls['licenseType'].errors, getErrorMessagesArrayForField('licenseType')) }}</div>
+      </div>
+    </div>
+
+    <!--SAVE AND RETURN-->
+    <div class="button-container" colspan="2">
+      <button class="btn btn-success" type="submit" [disabled]="driverForm.invalid">Save</button>
+      <button class="btn btn-primary" routerLink="/drivers">Driver Overview</button>
+    </div>
+  </div>
+</form>
